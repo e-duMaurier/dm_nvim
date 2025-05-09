@@ -20,7 +20,7 @@ This configuration utilizes the following plugins, organized in the respective f
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh
-git clone https://github.com/your-repo-name.git ~/.config/nvim
+git clone https://github.com/e-duMaurier/dm_nvim.git
 ```
 
 ## Directory Structure

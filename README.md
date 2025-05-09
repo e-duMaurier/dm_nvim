@@ -7,6 +7,11 @@ This repository contains my custom Neovim configuration, including settings, map
 - UI enhancements for better readability
 - Plugin setup for extended functionality
 
+## Plugins
+This configuration utilizes the following plugins:
+- [Lazy.Nvim](https://lazy.folke.io/) - Plugin Manager for Neovim.
+- [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system browser plugin
+
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh

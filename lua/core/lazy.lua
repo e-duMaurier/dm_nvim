@@ -10,8 +10,8 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 -- NOTE: Here is where you install your plugins.
-require('lazy').setup({
+require('lazy').setup
 {
-  require 'core.neotree'
+    require 'core.neotree',
+    require 'config.colortheme'
 }
-})

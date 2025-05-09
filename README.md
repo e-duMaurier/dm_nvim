@@ -13,9 +13,10 @@ This configuration utilizes the following plugins, organized in the respective f
 
 - **Core Plugins (`lua/core/`)**  
   - [Lazy.nvim](https://lazy.folke.io/) - Plugin manager for Neovim.
-  - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin
+  - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin.
 - **General Plugins (`lua/plugins/`)**  
-
+- **Config Plugins (`lua/config/`)**
+  - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh

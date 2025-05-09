@@ -8,15 +8,27 @@ This repository contains my custom Neovim configuration, including settings, map
 - Plugin setup for extended functionality
 
 ## Plugins
-This configuration utilizes the following plugins:
-- [Lazy.Nvim](https://lazy.folke.io/) - Plugin Manager for Neovim.
-- [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system browser plugin
+
+This configuration utilizes the following plugins, organized in the respective folders:
+
+- **Core Plugins (`lua/core/`)**  
+  - [Lazy.nvim](https://lazy.folke.io/) - Plugin manager for Neovim.
+  - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin
+- **General Plugins (`lua/plugins/`)**  
 
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh
 git clone https://github.com/your-repo-name.git ~/.config/nvim
 ```
+
+## Directory Structure
+
+The configuration is structured for clarity and modularity:
+- **core/** contains foundational elements like the plugin manager (`Lazy.nvim`).
+- **config/** holds key mappings, UI settings, and other general configurations.
+- **plugins/** houses configuration files for non-essential or additional plugins.
+
 ## License
 
 This configuration is licensed under the **MIT License**, which means you are free to:

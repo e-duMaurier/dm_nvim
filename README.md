@@ -1,4 +1,4 @@
-# My Neovim Configuration
+h# My Neovim Configuration
 
 This repository contains my custom Neovim configuration, including settings, mappings, and plugins that shape my workflow.
 
@@ -20,7 +20,7 @@ This configuration utilizes the following plugins, organized in the respective f
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh
-git clone https://github.com/e-duMaurier/dm_nvim.git
+git clone https://github.com/e-duMaurier/dm_nvim.git ~/.config/nvim
 ```
 
 ## Directory Structure

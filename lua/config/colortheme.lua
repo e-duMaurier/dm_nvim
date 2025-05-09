@@ -12,7 +12,8 @@ return {
         comments = {} -- disable italics on comments
       },
       integrations = {
-      neotree = true,
+        gitsigns = true,
+	neotree = true,
       }
     })
 

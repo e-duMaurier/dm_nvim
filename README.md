@@ -8,7 +8,6 @@ This repository contains my custom Neovim configuration, including settings, map
 - Plugin setup for extended functionality
 
 ## Plugins
-
 This configuration utilizes the following plugins, organized in the respective folders:
 
 - **Core Plugins (`lua/core/`)**  
@@ -17,6 +16,7 @@ This configuration utilizes the following plugins, organized in the respective f
 - **General Plugins (`lua/plugins/`)**  
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
+
 ## Installation
 Clone this repository and place the configuration in your Neovim directory:
 ```sh
@@ -24,14 +24,12 @@ git clone https://github.com/e-duMaurier/dm_nvim.git
 ```
 
 ## Directory Structure
-
 The configuration is structured for clarity and modularity:
 - **core/** contains foundational elements like the plugin manager (`Lazy.nvim`).
 - **config/** holds key mappings, UI settings, and other general configurations.
 - **plugins/** houses configuration files for non-essential or additional plugins.
 
 ## License
-
 This configuration is licensed under the **MIT License**, which means you are free to:
 - Use, modify, and distribute these files without restrictions.
 - Incorporate them into your own projects, personal or commercial.

@@ -11,6 +11,8 @@ This repository contains my custom Neovim configuration, including settings, map
 Clone this repository and place the configuration in your Neovim directory:
 ```sh
 git clone https://github.com/your-repo-name.git ~/.config/nvim
+```
+
 ## License
 This configuration is licensed under the MIT License, meaning you are free to use, modify, and distribute it as you see fit.
 

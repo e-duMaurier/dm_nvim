@@ -19,5 +19,6 @@ vim.o.conceallevel = 0 -- so that `` is visible in markdown files
 vim.o.undofile = true -- Save undo history
 vim.o.backup = false -- creates a backup file
 vim.o.writebackup = false -- disable editing file if a file is being edited, or was written to file while editing with another program 
-vim.o.showmode = false -- we don't need to see things like -- INSERT -- anymore
+-- Disabled showmode here to prevent issues with installing/setting up Treesitter
+--vim.o.showmode = false -- we don't need to see things like -- INSERT -- anymore
 -- vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- separate vim plugins from neovim in case vim still in use

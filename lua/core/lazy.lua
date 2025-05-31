@@ -15,5 +15,7 @@ require('lazy').setup
     require 'core.neotree',
     require 'config.colortheme',
     require 'plugins.bufferline',
-    require 'plugins.lualine'
+    require 'plugins.lualine',
+    require 'plugins.treesitter',
+    require 'plugins.windowpicker'
 }

@@ -2,8 +2,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- Disable the spacebar key's default behavior in Normal and Visual modes
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+-- REMOVE THIS LINE:
+-- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Variable for noremap and silent values
 local opts = { noremap = true, silent = true }
@@ -23,16 +23,14 @@ vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 -- Toggle line wrapping
 vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
 
--- Neotree Toggle (Hide/Show/Open/Close)
-vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', opts)
-
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
 vim.keymap.set('n', '<leader>x', ':Bdelete!<CR>', opts) -- close buffer
-vim.keymap.set('n', '<leader>b', '<cmd enew <CR>', opts) -- new buffer
+vim.keymap.set('n', '<leader>b', '<cmd>enew<CR>', opts) -- new buffer
 
-vim.keymap.set('n', '<leader>q', ':Bbye<CR>', opts)
+-- These keymaps are specific to Telescope, they don't need to be in mappings.lua
+-- vim.keymap.set('n', '<leader>q', ':Bbye<CR>', opts) -- This is for vim-bbye, can remain here or move to a general buffer management plugin config
 
 -- Window management
 vim.keymap.set('n', '<leader>v', '<C-w>v', opts) -- split window vertically
@@ -64,17 +62,25 @@ vim.keymap.set('n', 'N', 'Nzzzv')
 local diagnostics_active = true
 
 vim.keymap.set('n', '<leader>do', function()
-  diagnostics_active = not diagnostics_active
+    diagnostics_active = not diagnostics_active
 
-  if diagnostics_active then
-    vim.diagnostic.enable(0)
-  else
-    vim.diagnostic.disable(0)
-  end
+    if diagnostics_active then
+        vim.diagnostic.enable(0)
+    else
+        vim.diagnostic.disable(0)
+    end
 end)
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>D', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+vim.keymap.set('n', '<leader>dl', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+-- Neotree Toggle (Hide/Show/Open/Close)
+vim.keymap.set('n', '<leader>e', ':Neotree toggle<CR>', opts)
+
+-- nvim-window-picker keybindings
+vim.keymap.set('n', '<leader>w', '<cmd>lua require("window-picker").pick_window()<CR>', { silent = true, desc = 'Pick Window' })
+vim.keymap.set('n', '<leader>ngs', ':Neotree float git_status<CR>', { silent = true, desc = 'Neotree Open Git Status Window' })
+

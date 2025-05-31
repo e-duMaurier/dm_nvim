@@ -13,5 +13,5 @@ return {
       },
     }
   end,
-  -- Keybindings for nvim-window-picker are in mappings.lua
 }
+

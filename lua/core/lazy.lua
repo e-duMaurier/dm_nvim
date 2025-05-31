@@ -17,5 +17,6 @@ require('lazy').setup
     require 'plugins.bufferline',
     require 'plugins.lualine',
     require 'plugins.treesitter',
-    require 'plugins.windowpicker'
+    require 'plugins.windowpicker',
+    require 'plugins.telescope'
 }

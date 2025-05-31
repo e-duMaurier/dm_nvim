@@ -13,11 +13,12 @@ This configuration utilizes the following plugins, organized in the respective f
 - **Core Plugins (`lua/core/`)**  
   - [Lazy.nvim](https://lazy.folke.io/) - Plugin manager for Neovim.
   - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin.
+  - [Window-Picker](https://github.com/s1n7ax/nvim-window-picker) - prompts the user to pick a window and returns the window id of the picked window (used for opening files with Enter key in Neotree)
 - **General Plugins (`lua/plugins/`)**
   - [Bufferline](https://github.com/akinsho/bufferline.nvim) - Buffer line/tab page integration for Neovim
   - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - Neovim statusline plugin
   - [Tree-Sitter](https://github.com/nvim-treesitter/nvim-treesitter) - Parsing library plugin to generate syntax trees
-  - [Window-Picker](https://github.com/s1n7ax/nvim-window-picker) - prompts the user to pick a window and returns the window id of the picked window (used for opening files with Enter key in Neotree)
+  - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder over lists plugin
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 

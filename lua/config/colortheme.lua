@@ -14,7 +14,9 @@ return {
       integrations = {
         gitsigns = true,
 	    neotree = true,
-        --lualine = true,
+        telescope = {
+          enabled = true
+        }
       }
     })
 

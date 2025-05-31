@@ -4,11 +4,20 @@ require 'config.mappings'
 -- Core: lazy.nvim loads all plugins from their respective files
 require 'core.lazy'
 
--- Autocmds that run after everything is loaded
--- Automatically open Neotree when Neovim starts
-vim.cmd([[
-  autocmd VimEnter * Neotree show left
-]])
+-- Automatically open Neotree when Neovim starts and prevent empty buffer
+vim.api.nvim_create_autocmd("VimEnter", {
+  pattern = "*",
+  callback = function()
+    -- Check if Neovim was started without any file arguments
+    if vim.fn.argc() == 0 then
+      -- Close the initial empty buffer (use silent! to prevent error if no buffer is open)
+      vim.cmd("silent! bw!")
+    end
+    -- Then show Neotree on the left
+    vim.cmd("Neotree show left")
+  end,
+  once = true, -- Ensure it runs only once
+})
 
 -- Require the options table early, but its contents will be applied later
 local global_options_table = require('config.options')

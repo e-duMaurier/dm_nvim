@@ -6,6 +6,7 @@ require 'config.colortheme'
 require 'config.mappings'
 require 'config.options'
 -- Plugins
+require 'plugins.bufferline'
 
 -- Automatically open Neotree when Neovim starts
 vim.cmd([[

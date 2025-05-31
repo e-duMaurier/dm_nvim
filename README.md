@@ -13,7 +13,8 @@ This configuration utilizes the following plugins, organized in the respective f
 - **Core Plugins (`lua/core/`)**  
   - [Lazy.nvim](https://lazy.folke.io/) - Plugin manager for Neovim.
   - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin.
-- **General Plugins (`lua/plugins/`)**  
+- **General Plugins (`lua/plugins/`)**
+ - [Bufferline](https://github.com/akinsho/bufferline.nvim) - Buffer line/tab page integration for Neovim
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 

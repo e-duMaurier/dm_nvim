@@ -14,5 +14,6 @@ require('lazy').setup
 {
     require 'core.neotree',
     require 'config.colortheme',
-    require 'plugins.bufferline'
+    require 'plugins.bufferline',
+    require 'plugins.lualine'
 }

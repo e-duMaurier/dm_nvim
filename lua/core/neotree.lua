@@ -12,10 +12,21 @@ return {
     ---@module "neo-tree"
     ---@type neotree.Config?
     opts = {
+      -- This is the correct place for window-specific settings like position and width
+      window = {
+        position = "left", -- Ensures Neotree always opens on the left
+        width = 30,        -- Optional: Set a default width for the Neotree window
+        mappings = {
+          -- These mappings are for the Neotree window itself, not the filesystem entries
+          -- You can add/remove mappings here if you want to control the Neotree window behavior
+        },
+      },
       filesystem = {
-        follow_current_file =enabled, -- Ensures the active file stays synced
+        -- Corrected syntax: 'enabled' should be 'true'
+        follow_current_file = enable, -- Ensures the active file stays synced
         hijack_netrw_behavior = "open_default", -- Prevents default file handling conflicts
         window = {
+          -- These mappings are for how files open from the Neotree filesystem
           mappings = {
             ["<CR>"] = "open_with_window_picker", -- Ensures the file opens in a buffer
             ["o"] = "open",

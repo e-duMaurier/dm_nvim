@@ -13,7 +13,8 @@ return {
       },
       integrations = {
         gitsigns = true,
-	neotree = true,
+	    neotree = true,
+        lualine = true,
       }
     })
 

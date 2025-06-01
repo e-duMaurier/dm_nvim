@@ -32,6 +32,8 @@ This configuration utilizes the following plugins, organized in the respective f
   - [Colorizer](https://github.com/norcalli/nvim-colorizer.lua) - A high-performance color highlighter for Neovim which has no external dependencies.
   - [Which Key](https://github.com/folke/which-key.nvim) - Helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
   - [Fterm](https://github.com/numToStr/FTerm.nvim) - No-nonsense floating terminal plugin for Neovim.
+  - [DAP](https://github.com/mfussenegger/nvim-dap) - Debug Adapter protocol client implementation for Neovim.
+  - [Aerial](https://github.com/stevearc/aerial.nvim) - A code outline window for skimming and quick navigation.
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
   - `Options`- Config file to contain the custom settings for Neovim.

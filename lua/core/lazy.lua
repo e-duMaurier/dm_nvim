@@ -20,4 +20,5 @@ require("lazy").setup({
   require("plugins.lsp-config"),
   require("plugins.cmp"),
   require("plugins.none-ls"),
+  require("plugins.gitsigns"),
 })

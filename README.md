@@ -24,6 +24,7 @@ This configuration utilizes the following plugins, organized in the respective f
   - [LSP Config](https://github.com/neovim/nvim-lspconfig) - nvim-lspconfig is a "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers.
   - [CMP](https://github.com/hrsh7th/nvim-cmp) - A completion engine plugin for neovim.
   - [None-LS](https://github.com/nvimtools/none-ls.nvim) - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
+  - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) - Deep buffer integration for Git.
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 

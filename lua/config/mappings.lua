@@ -2,8 +2,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
--- REMOVE THIS LINE:
--- vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- Variable for noremap and silent values
 local opts = { noremap = true, silent = true }

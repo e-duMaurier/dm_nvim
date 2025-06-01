@@ -17,7 +17,7 @@ This configuration utilizes the following plugins, organized in the respective f
 - **General Plugins (`lua/plugins/`)**
   - [Bufferline](https://github.com/akinsho/bufferline.nvim) - Buffer line/tab page integration for Neovim
   - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - Neovim statusline plugin
-  - [Tree-Sitter](https://github.com/nvim-treesitter/nvim-treesitter) - Parsing library plugin to generate syntax trees
+  - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Parsing library plugin to generate syntax trees
   - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder over lists plugin
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.

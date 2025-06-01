@@ -30,8 +30,13 @@ This configuration utilizes the following plugins, organized in the respective f
   - [Autopairs](https://github.com/windwp/nvim-autopairs) - A super powerful autopair plugin for Neovim that supports multiple characters.
   - [Comment](https://github.com/numToStr/Comment.nvim) - Smart and Powerful commenting plugin for Neovim.
   - [Colorizer](https://github.com/norcalli/nvim-colorizer.lua) - A high-performance color highlighter for Neovim which has no external dependencies.
+  - [Which Key](https://github.com/folke/which-key.nvim) - Helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
+  - [Fterm](https://github.com/numToStr/FTerm.nvim) - No-nonsense floating terminal plugin for Neovim.
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
+  - `Options`- Config file to contain the custom settings for Neovim.
+  - `Mappings`- Custom keybinds for Neovim and plugins.
+  - `Autocmd`- File to hold various functions to handle additional customisation of Neovim.
 
 ## Installation
 
@@ -42,12 +47,6 @@ git clone https://github.com/e-duMaurier/dm_nvim.git ~/.config/nvim
 ```
 
 ## Directory Structure
-
-The configuration is structured for clarity and modularity:
-
-- **core/** contains foundational elements like the plugin manager (`Lazy.nvim`).
-- **config/** holds key mappings, UI settings, and other general configurations.
-- **plugins/** houses configuration files for non-essential or additional plugins.
 
 The configuration is structured for clarity and modularity:
 

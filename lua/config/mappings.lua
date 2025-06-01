@@ -1,3 +1,6 @@
+-- Hold all the customised keymappings across Neovim, and the various plugins.
+-- I want to hold them all here, so it is easier to manage, and verify which commands are used, and where.
+
 -- Set leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "

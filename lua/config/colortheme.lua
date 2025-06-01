@@ -1,4 +1,5 @@
--- Load Catppuccin theme
+-- Default colur theme file for Nvim.
+-- Currently used to provide the catppuccin colour theme.
 return {
     "catppuccin/nvim",
     name = "catppuccin",
@@ -51,6 +52,7 @@ return {
                     scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
                     colored_indent_levels = true,
                 },
+                window_picker = true,
             },
         })
 

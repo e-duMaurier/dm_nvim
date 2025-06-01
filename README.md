@@ -19,6 +19,8 @@ This configuration utilizes the following plugins, organized in the respective f
   - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - Neovim statusline plugin
   - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Parsing library plugin to generate syntax trees
   - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder over lists plugin
+  - [LSP Config](https://github.com/neovim/nvim-lspconfig) - Enable LSP servers
+  - [CMP](https://github.com/hrsh7th/nvim-cmp) - Autocomplete engine, used to work with LSP Config
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 

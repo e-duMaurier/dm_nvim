@@ -1,7 +1,7 @@
 -- Load Catppuccin theme
 return {
-  'catppuccin/nvim',
-  name = 'catppuccin',
+  "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false, -- disable Lazy loading
   priority = 1000,
   config = function()
@@ -9,18 +9,43 @@ return {
       flavour = "mocha", -- Set Mocha style
       transparent_background = true,
       styles = {
-        comments = {} -- disable italics on comments
+        comments = {}, -- disable italics on comments
       },
       integrations = {
         gitsigns = true,
-	    neotree = true,
+        neotree = true,
         telescope = {
-          enabled = true
-        }
-      }
+          enabled = true,
+        },
+        markdown = true,
+        mason = true,
+        cmp = true,
+        treesitter = true,
+        treesitter_context = true,
+        native_lsp = {
+          enabled = true,
+          virtual_text = {
+            errors = { "italic" },
+            hints = { "italic" },
+            warnings = { "italic" },
+            information = { "italic" },
+            ok = { "italic" },
+          },
+          underlines = {
+            errors = { "underline" },
+            hints = { "underline" },
+            warnings = { "underline" },
+            information = { "underline" },
+            ok = { "underline" },
+          },
+          inlay_hints = {
+            background = true,
+          },
+        },
+      },
     })
 
     -- Apply the colorscheme
-    vim.cmd.colorscheme "catppuccin"
-  end
+    vim.cmd.colorscheme("catppuccin")
+  end,
 }

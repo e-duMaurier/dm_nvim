@@ -5,16 +5,15 @@ return {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     "MunifTanjim/nui.nvim",
-    '3rd/image.nvim', -- Optional image support in preview window
-    's1n7ax/nvim-window-picker',
+    "3rd/image.nvim",            -- Optional image support in preview window
+    "s1n7ax/nvim-window-picker",
   },
   lazy = false, -- neo-tree will load itself immediately
   opts = {
     window = {
       position = "left", -- Ensures Neotree always opens on the left
-      width = 30,        -- Optional: Set a default width for the Neotree window
-      mappings = {
-      },
+      width = 30,     -- Optional: Set a default width for the Neotree window
+      mappings = {},
     },
     filesystem = {
       follow_current_file = enable,
@@ -27,8 +26,8 @@ return {
           ["s"] = "open_split", -- Open in a horizontal split
           ["v"] = "open_vsplit", -- Open in a vertical split
           ["t"] = "open_tabnew", -- Open in a new tab
-        }
-      }
-    }
-  }
+        },
+      },
+    },
+  },
 }

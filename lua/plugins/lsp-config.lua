@@ -101,6 +101,31 @@ return { -- LSP Configuration & Plugins
 
         -- Enable the following language servers
         local servers = {
+            arduino_language_server = {},
+            ansiblels = {},
+            awk_ls = {},
+            azure_pipelines_ls = {},
+            bashls = {},
+            cmake = {},
+            csharp_ls = {},
+            css_variables = {},
+            cssls = {},
+            cssmodules_ls = {},
+            docker_compose_language_service = {},
+            dockerls = {},
+            eslint = {},
+            golangci_lint_ls = {},
+            gopls = {},
+            gradle_ls = {},
+            graphql = {},
+            groovyls = {},
+            html = { filetypes = { "html", "twig", "hbs" } },
+            java_language_server = {},
+            jdtls = {},
+            jsonls = {},
+            kotlin_language_server = {},
+            laravel_ls = {},
+            ltex = {},
             lua_ls = {
                 -- cmd = {...},
                 -- filetypes { ...},
@@ -127,6 +152,9 @@ return { -- LSP Configuration & Plugins
                     },
                 },
             },
+            nextls = {},
+            postgres_lsp = {},
+            powershell_es = {},
             pylsp = {
                 settings = {
                     pylsp = {
@@ -171,21 +199,13 @@ return { -- LSP Configuration & Plugins
                     },
                 },
             },
-            jsonls = {},
             sqlls = {},
-            terraformls = {},
-            yamlls = {},
-            bashls = {},
-            dockerls = {},
-            docker_compose_language_service = {},
+            svelte = {},
             tailwindcss = {},
-            graphql = {},
-            html = { filetypes = { "html", "twig", "hbs" } },
-            cssls = {},
-            ltex = {},
+            terraform_lsp = {},
+            terraformls = {},
             texlab = {},
-            awk_ls = {},
-            arduino_language_server = {},
+            yamlls = {},
         }
 
         -- Ensure the servers and tools above are installed

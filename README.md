@@ -13,16 +13,17 @@ This repository contains my custom Neovim configuration, including settings, map
 This configuration utilizes the following plugins, organized in the respective folders:
 
 - **Core Plugins (`lua/core/`)**
-  - [Lazy.nvim](https://lazy.folke.io/) - Plugin manager for Neovim.
-  - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - File system tree browser plugin.
-  - [Window-Picker](https://github.com/s1n7ax/nvim-window-picker) - prompts the user to pick a window and returns the window id of the picked window (used for opening files with Enter key in Neotree)
+  - [Lazy.nvim](https://lazy.folke.io/) - A modern plugin manager for Neovim.
+  - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - Neovim plugin to browse the file system and other tree like structures.
+  - [Window-Picker](https://github.com/s1n7ax/nvim-window-picker) - Neovim plugin that allows users to easily pick a window using a selector.
 - **General Plugins (`lua/plugins/`)**
-  - [Bufferline](https://github.com/akinsho/bufferline.nvim) - Buffer line/tab page integration for Neovim
-  - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - Neovim statusline plugin
-  - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - Parsing library plugin to generate syntax trees
-  - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - Fuzzy finder over lists plugin
-  - [LSP Config](https://github.com/neovim/nvim-lspconfig) - Enable LSP servers
-  - [CMP](https://github.com/hrsh7th/nvim-cmp) - Autocomplete engine, used to work with LSP Config
+  - [Bufferline](https://github.com/akinsho/bufferline.nvim) - A snazzy buffer line (with tabpage integration) for Neovim built using lua.
+  - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - A blazing fast and easy to configure Neovim statusline written in Lua.
+  - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - provide a simple and easy way to use the interface for tree-sitter in Neovim.
+  - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - A highly extendable fuzzy finder over lists.
+  - [LSP Config](https://github.com/neovim/nvim-lspconfig) - nvim-lspconfig is a "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers.
+  - [CMP](https://github.com/hrsh7th/nvim-cmp) - A completion engine plugin for neovim.
+  - [None-LS](https://github.com/nvimtools/none-ls.nvim) - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
 - **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 
@@ -35,6 +36,12 @@ git clone https://github.com/e-duMaurier/dm_nvim.git ~/.config/nvim
 ```
 
 ## Directory Structure
+
+The configuration is structured for clarity and modularity:
+
+- **core/** contains foundational elements like the plugin manager (`Lazy.nvim`).
+- **config/** holds key mappings, UI settings, and other general configurations.
+- **plugins/** houses configuration files for non-essential or additional plugins.
 
 The configuration is structured for clarity and modularity:
 

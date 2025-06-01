@@ -27,7 +27,10 @@ This configuration utilizes the following plugins, organized in the respective f
   - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) - Deep buffer integration for Git.
   - [Alpha](https://github.com/goolord/alpha-nvim) - A fast and fully programmable greeter for Neovim.
   - [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim) - Adds indentation guides to Neovim.
-    **Config Plugins (`lua/config/`)**
+  - [Autopairs](https://github.com/windwp/nvim-autopairs) - A super powerful autopair plugin for Neovim that supports multiple characters.
+  - [Comment](https://github.com/numToStr/Comment.nvim) - Smart and Powerful commenting plugin for Neovim.
+  - [Colorizer](https://github.com/norcalli/nvim-colorizer.lua) - A high-performance color highlighter for Neovim which has no external dependencies.
+- **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 
 ## Installation
@@ -51,6 +54,13 @@ The configuration is structured for clarity and modularity:
 - **core/** contains foundational elements like the plugin manager (`Lazy.nvim`).
 - **config/** holds key mappings, UI settings, and other general configurations.
 - **plugins/** houses configuration files for non-essential or additional plugins.
+
+## TODO
+
+- Ensure all mappings, across all plugins, are in `mappings.lua`.
+- Remove unwanted servers/languages from any LSP/Linter plugins.
+- Reconfigure greeter menu in `alpha.lua` so everything works as intended.
+- Double check `colorizer.lua` is working, and Hex/RGB values are coloured correctly.
 
 ## License
 

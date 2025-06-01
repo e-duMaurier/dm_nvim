@@ -1,4 +1,4 @@
-h# My Neovim Configuration
+# My Neovim Configuration
 
 This repository contains my custom Neovim configuration, including settings, mappings, and plugins that shape my workflow.
 
@@ -21,11 +21,13 @@ This configuration utilizes the following plugins, organized in the respective f
   - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - A blazing fast and easy to configure Neovim statusline written in Lua.
   - [Treesitter](https://github.com/nvim-treesitter/nvim-treesitter) - provide a simple and easy way to use the interface for tree-sitter in Neovim.
   - [Telescope](https://github.com/nvim-telescope/telescope.nvim) - A highly extendable fuzzy finder over lists.
-  - [LSP Config](https://github.com/neovim/nvim-lspconfig) - nvim-lspconfig is a "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers.
+  - [LSP Config](https://github.com/neovim/nvim-lspconfig) - A "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers.
   - [CMP](https://github.com/hrsh7th/nvim-cmp) - A completion engine plugin for neovim.
   - [None-LS](https://github.com/nvimtools/none-ls.nvim) - Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua.
   - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) - Deep buffer integration for Git.
-- **Config Plugins (`lua/config/`)**
+  - [Alpha](https://github.com/goolord/alpha-nvim) - A fast and fully programmable greeter for Neovim.
+  - [Indent Blankline](https://github.com/lukas-reineke/indent-blankline.nvim) - Adds indentation guides to Neovim.
+    **Config Plugins (`lua/config/`)**
   - [Catppuccin Theme](https://github.com/catppuccin/nvim) - Catppuccin for Neovim.
 
 ## Installation

@@ -61,13 +61,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 local diagnostics_active = true
 
 vim.keymap.set("n", "<leader>do", function()
-  diagnostics_active = not diagnostics_active
+    diagnostics_active = not diagnostics_active
 
-  if diagnostics_active then
-    vim.diagnostic.enable(0)
-  else
-    vim.diagnostic.disable(0)
-  end
+    if diagnostics_active then
+        vim.diagnostic.enable(0)
+    else
+        vim.diagnostic.disable(0)
+    end
 end)
 
 -- Diagnostic keymaps
@@ -81,14 +81,14 @@ vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", opts)
 
 -- nvim-window-picker keybindings
 vim.keymap.set(
-  "n",
-  "<leader>w",
-  '<cmd>lua require("window-picker").pick_window()<CR>',
-  { silent = true, desc = "Pick Window" }
+    "n",
+    "<leader>w",
+    '<cmd>lua require("window-picker").pick_window()<CR>',
+    { silent = true, desc = "Pick Window" }
 )
 vim.keymap.set(
-  "n",
-  "<leader>ngs",
-  ":Neotree float git_status<CR>",
-  { silent = true, desc = "Neotree Open Git Status Window" }
+    "n",
+    "<leader>ngs",
+    ":Neotree float git_status<CR>",
+    { silent = true, desc = "Neotree Open Git Status Window" }
 )

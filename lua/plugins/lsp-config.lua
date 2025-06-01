@@ -107,7 +107,7 @@ return { -- LSP Configuration & Plugins
             azure_pipelines_ls = {},
             bashls = {},
             cmake = {},
-            csharp_ls = {},
+            -- csharp_ls = {}, - need to fix/setup
             css_variables = {},
             cssls = {},
             cssmodules_ls = {},
@@ -120,11 +120,11 @@ return { -- LSP Configuration & Plugins
             graphql = {},
             groovyls = {},
             html = { filetypes = { "html", "twig", "hbs" } },
-            java_language_server = {},
+            -- java_language_server = {}, -- need to fix/setup
             jdtls = {},
             jsonls = {},
             kotlin_language_server = {},
-            laravel_ls = {},
+            -- laravel_ls = {}, -- need to fix/setup
             ltex = {},
             lua_ls = {
                 -- cmd = {...},
@@ -202,7 +202,7 @@ return { -- LSP Configuration & Plugins
             sqlls = {},
             svelte = {},
             tailwindcss = {},
-            terraform_lsp = {},
+            -- terraform_lsp = {}, - need to fix/setup
             terraformls = {},
             texlab = {},
             yamlls = {},

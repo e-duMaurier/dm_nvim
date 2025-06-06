@@ -23,7 +23,7 @@ return {
             window = {
                 mappings = {
                     -- This mapping uses nvim-window-picker's functionality
-                    ["<CR>"] = "open_with_window_picker",
+                    ["<CR>"] = "open",
                     ["o"] = "open",
                     ["s"] = "open_split", -- Open in a horizontal split
                     ["v"] = "open_vsplit", -- Open in a vertical split

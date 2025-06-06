@@ -82,13 +82,6 @@ vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diag
 -- Neotree Toggle (Hide/Show/Open/Close)
 vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", opts)
 
--- nvim-window-picker keybindings
-vim.keymap.set(
-    "n",
-    "<leader>w",
-    '<cmd>lua require("window-picker").pick_window()<CR>',
-    { silent = true, desc = "Pick Window" }
-)
 vim.keymap.set(
     "n",
     "<leader>ngs",

@@ -15,7 +15,6 @@ This configuration utilizes the following plugins, organized in the respective f
 - **Core Plugins (`lua/core/`)**
   - [Lazy.nvim](https://lazy.folke.io/) - A modern plugin manager for Neovim.
   - [Neo-tree](https://github.com/nvim-neo-tree/neo-tree.nvim) - Neovim plugin to browse the file system and other tree like structures.
-  - [Window-Picker](https://github.com/s1n7ax/nvim-window-picker) - Neovim plugin that allows users to easily pick a window using a selector.
 - **General Plugins (`lua/plugins/`)**
   - [Bufferline](https://github.com/akinsho/bufferline.nvim) - A snazzy buffer line (with tabpage integration) for Neovim built using lua.
   - [Lualine](https://github.com/nvim-lualine/lualine.nvim) - A blazing fast and easy to configure Neovim statusline written in Lua.

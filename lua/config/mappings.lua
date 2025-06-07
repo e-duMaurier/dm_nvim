@@ -170,7 +170,7 @@ vim.keymap.set(
 )
 
 -- Fterm (Floating Terminal)
--- Toggle the floating terminal in Normal mode
-map_with_desc({"n", "t"}, "<leader>tt", function()
-	require("FTerm").toggle()
+-- Toggle the floating terminal
+map_with_desc({ "n", "t" }, "<leader>tt", function()
+    require("FTerm").toggle()
 end, "Toggle Floating Terminal")

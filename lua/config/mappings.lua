@@ -14,6 +14,12 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- Global options for keymap.set (no remap and silent execution)
 local opts = { noremap = true, silent = true }
 
+-- Function to create keymaos with a description, while keeping 'opts' are applied
+-- 'modes' can be a string, or table ("n", or {"n","v"}).
+local function map_with_desc(modes, map, cmd, description)
+    vim.keymap.set(modes, map, cmd, vim.tbl_extend("force", opts, { desc = description }))
+end
+
 -- Variable to track diagnostics state (used for toggling)
 local diagnostics_active = true
 
@@ -29,25 +35,29 @@ vim.keymap.set("v", "p", '"_dP', opts)
 
 -- File Saving
 -- Save the current file.
-vim.keymap.set("n", "<C-s>", "<cmd> w <CR>", opts)
+map_with_desc("n", "<C-s>", "<cmd> w <CR>", "Save File")
 -- Save the current file without triggering auto-formatting.
-vim.keymap.set("n", "<leader>sn", "<cmd>noautocmd w <CR>", opts)
+map_with_desc("n", "<leader>sn", "<cmd>noautocmd w <CR>", "Save (No Autoformat)")
 
 ----------------------------------------------------------------------------------------------------
 --                                      BUFFER MANAGEMENT
 ----------------------------------------------------------------------------------------------------
 
+-- Which-key group for Buffer commands
+-- Press <leader>b to see buffer related options.
+map_with_desc("n", "<leader>b", "<Nop>", "Buffers")
+
 -- Navigate between buffers
 -- Go to the next buffer in the buffer list.
-vim.keymap.set("n", "<Tab>", ":bnext<CR>", opts)
+map_with_desc("n", "<Tab>", ":bnext<CR>", "Next Buffer")
 -- Go to the previous buffer in the buffer list.
-vim.keymap.set("n", "<S-Tab>", ":bprevious<CR>", opts)
+map_with_desc("n", "<S-Tab>", ":bprevious<CR>", "Previous Buffer")
 
 -- Buffer Actions
 -- Close the current buffer (similar to :bd or :bdelete).
-vim.keymap.set("n", "<leader>x", ":Bdelete!<CR>", opts)
+map_with_desc("n", "<leader>x", ":Bdelete!<CR>", "Close Buffer")
 -- Create and open a new empty buffer.
-vim.keymap.set("n", "<leader>b", "<cmd>enew<CR>", opts)
+map_with_desc("n", "<leader>b", "<cmd>enew<CR>", "New Buffer")
 
 ----------------------------------------------------------------------------------------------------
 --                                      WINDOW MANAGEMENT
@@ -55,41 +65,45 @@ vim.keymap.set("n", "<leader>b", "<cmd>enew<CR>", opts)
 
 -- Create New Splits
 -- Split the current window vertically (creates a new window to the right).
-vim.keymap.set("n", "<leader>v", "<C-w>v", opts)
+map_with_desc("n", "<leader>v", "<C-w>v", "Split Vertical")
 -- Split the current window horizontally (creates a new window below).
-vim.keymap.set("n", "<leader>h", "<C-w>s", opts)
+map_with_desc("n", "<leader>h", "<C-w>s", "Split Horizontal")
 
 -- Window Sizing & Closing
 -- Make all split windows in the current tab equal in height and width.
-vim.keymap.set("n", "<leader>se", "<C-w>=", opts)
+map_with_desc("n", "<leader>se", "<C-w>=", "Equalise Splits")
 -- Close the current window (split).
-vim.keymap.set("n", "<leader>xs", ":close<CR>", opts)
+map_with_desc("n", "<leader>xs", ":close<CR>", "Close Current Window")
 
 -- Navigate Between Existing Splits (using Ctrl-w + direction)
 -- Move cursor to the window above.
-vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", opts)
+map_with_desc("n", "<C-k>", ":wincmd k<CR>", "Move to Window Up")
 -- Move cursor to the window below.
-vim.keymap.set("n", "<C-j>", ":wincmd j<CR>", opts)
+map_with_desc("n", "<C-j>", ":wincmd j<CR>", "Move to Window Down")
 -- Move cursor to the window on the left.
-vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", opts)
+map_with_desc("n", "<C-h>", ":wincmd h<CR>", "Move to Window Left")
 -- Move cursor to the window on the right.
-vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", opts)
+map_with_desc("n", "<C-l>", ":wincmd l<CR>", "Move to Window Right")
 
 ----------------------------------------------------------------------------------------------------
 --                                      TAB MANAGEMENT
 ----------------------------------------------------------------------------------------------------
 
+-- Whick-Key group for Tab commands
+-- Press <leader>t to see tab-related options.
+map_with_desc("n", "<leader>t", "<Nop>", "Tabs")
+
 -- Tab Actions
 -- Open a new empty tab.
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", opts)
+map_with_desc("n", "<leader>to", ":tabnew<CR>", "Open New Tab")
 -- Close the current tab.
-vim.keymap.set("n", "<leader>tx", ":tabclose<CR>", opts)
+map_with_desc("n", "<leader>tx", ":tabclose<CR>", "Close Current Tab")
 
 -- Navigate Between Tabs
 -- Go to the next tab.
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", opts)
+map_with_desc("n", "<leader>tn", ":tabn<CR>", "Next Tab")
 -- Go to the previous tab.
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)
+map_with_desc("n", "<leader>tp", ":tabp<CR>", "Previous Tab")
 
 ----------------------------------------------------------------------------------------------------
 --                                      NAVIGATION & SCROLLING
@@ -97,15 +111,15 @@ vim.keymap.set("n", "<leader>tp", ":tabp<CR>", opts)
 
 -- Vertical Scrolling & Centering
 -- Scroll down half a screen and center the cursor on the middle line.
-vim.keymap.set("n", "<C-d>", "<C-d>zz", opts)
+map_with_desc("n", "<C-d>", "<C-d>zz", "Scroll Down & Centre")
 -- Scroll up half a screen and center the cursor on the middle line.
-vim.keymap.set("n", "<C-u>", "<C-u>zz", opts)
+map_with_desc("n", "<C-u>", "<C-u>zz", "Scroll Up & Centre")
 
 -- Search Navigation & Centering
 -- Jump to the next search match and center it on the screen.
-vim.keymap.set("n", "n", "nzzzv")
+map_with_desc("n", "n", "nzzzv", "Next Search & Centre")
 -- Jump to the previous search match and center it on the screen.
-vim.keymap.set("n", "N", "Nzzzv")
+map_with_desc("n", "N", "Nzzzv", "Previous Search & Centre")
 
 ----------------------------------------------------------------------------------------------------
 --                                      DISPLAY & DIAGNOSTICS (LSP)
@@ -113,18 +127,22 @@ vim.keymap.set("n", "N", "Nzzzv")
 
 -- Toggle Line Wrapping
 -- Toggle line wrapping on/off for the current buffer.
-vim.keymap.set("n", "<leader>lw", "<cmd>set wrap!<CR>", opts)
+map_with_desc("n", "<leader>lw", "<cmd>set wrap!<CR>", "Toggle Line Wrap")
+
+-- Which-key group for Diagnostics
+-- Press <leader>d for diagnostic-related options.
+map_with_desc("n", "<leader>d", "<Nop>", "Diagnostics")
 
 -- Toggle All Diagnostics
 -- Toggles all LSP diagnostics (errors, warnings, info) on or off for the current buffer.
-vim.keymap.set("n", "<leader>do", function()
-	diagnostics_active = not diagnostics_active
-	if diagnostics_active then
-		vim.diagnostic.enable(0)
-	else
-		vim.diagnostic.disable(0)
-	end
-end, opts)
+map_with_desc("n", "<leader>do", function()
+    diagnostics_active = not diagnostics_active
+    if diagnostics_active then
+        vim.diagnostic.enable(0)
+    else
+        vim.diagnostic.disable(0)
+    end
+end, "Toggle Diagnostics")
 
 -- Diagnostic Navigation
 -- Go to the previous diagnostic message in the current file.
@@ -142,11 +160,17 @@ vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diag
 
 -- NeoTree
 -- Toggle the visibility of the NeoTree file explorer sidebar.
-vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", opts)
+map_with_desc("n", "<leader>e", ":Neotree toggle<CR>", "Toggle Neotree")
 -- Open NeoTree in a floating window to show Git status.
 vim.keymap.set(
-	"n",
-	"<leader>ngs",
-	":Neotree float git_status<CR>",
-	{ silent = true, desc = "Neotree Open Git Status Window" }
+    "n",
+    "<leader>ngs",
+    ":Neotree float git_status<CR>",
+    { silent = true, desc = "Neotree Open Git Status Window" }
 )
+
+-- Fterm (Floating Terminal)
+-- Toggle the floating terminal in Normal mode
+map_with_desc({"n", "t"}, "<leader>tt", function()
+	require("FTerm").toggle()
+end, "Toggle Floating Terminal")

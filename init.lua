@@ -1,10 +1,7 @@
--- Set leader key and other core mappings
 require("config.mappings")
-
--- Core: lazy.nvim loads all plugins from their respective files
-require("core.lazy")
-
 require("config.autocmd")
+
+require("core.lazy")
 
 -- Require the options table early, but its contents will be applied later
 local global_options_table = require("config.options")

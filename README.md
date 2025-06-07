@@ -2,6 +2,17 @@
 
 This repository contains my custom Neovim configuration, including settings, mappings, and plugins that shape my workflow.
 
+## Requirements
+
+The complete configuration, including plugins, has several requirements, so it is advised to check these, and install, or disable any plugins, before attempting to use this configuration.
+
+The core requirements are:
+
+- [Neovim](https://neovim.io/) (minimum version 0.8.0)
+- [Git](https://git-scm.com/) (minimum version 2.19.0)
+- [LuaRocks](https://luarocks.org/) (Lazy.nvim requirement)
+- [Nerd Fonts](https://www.nerdfonts.com/) (optional, but recommended to have a patched font)
+
 ## Features
 
 - Customized key mappings for efficiency
@@ -47,7 +58,7 @@ Clone this repository and place the configuration in your Neovim directory:
 git clone https://github.com/e-duMaurier/dm_nvim.git ~/.config/nvim
 ```
 
-## Directory Structure
+## Directory
 
 The configuration is structured for clarity and modularity:
 
@@ -57,10 +68,9 @@ The configuration is structured for clarity and modularity:
 
 ## TODO
 
-- Ensure all mappings, across all plugins, are in `mappings.lua`.
+- Ensure all mappings, across all plugins, are in `mappings.lua`, where possible.
 - Remove unwanted servers/languages from any LSP/Linter plugins.
-- Reconfigure greeter menu in `alpha.lua` so everything works as intended.
-- Double check `colorizer.lua` is working, and Hex/RGB values are coloured correctly.
+- Ensure mappings local to plug-ins can be seen through which-key
 
 ## License
 

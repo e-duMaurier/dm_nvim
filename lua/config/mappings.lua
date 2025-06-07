@@ -122,7 +122,7 @@ map_with_desc("n", "n", "nzzzv", "Next Search & Centre")
 map_with_desc("n", "N", "Nzzzv", "Previous Search & Centre")
 
 ----------------------------------------------------------------------------------------------------
---                                      DISPLAY & DIAGNOSTICS (LSP)
+--                                      DISPLAY & DIAGNOSTICS
 ----------------------------------------------------------------------------------------------------
 
 -- Toggle Line Wrapping
@@ -174,3 +174,9 @@ vim.keymap.set(
 map_with_desc({ "n", "t" }, "<leader>tt", function()
     require("FTerm").toggle()
 end, "Toggle Floating Terminal")
+
+-- Aerial (Code Outline and Synbols)
+-- Toggle the Aerial code outline window
+map_with_desc("n", "<leader>oo", ":AerialToggle!<CR>", "Toggle Outline Window")
+-- Toggle the Aerial symbol Navigation
+map_with_desc("n", "<leader>on", ":AerialNavToggle<CR>", "Toggle Outline Navigation")

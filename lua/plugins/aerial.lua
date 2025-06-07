@@ -1,3 +1,6 @@
+-- aerial.lua
+-- A code outline window for skimming and quick navigation
+
 return {
     "stevearc/aerial.nvim",
     lazy_load = true,
@@ -9,9 +12,8 @@ return {
     },
     config = function()
         require("aerial").setup({
-            -- optionally use on_attach to set keymaps when aerial has attached to a buffer
             on_attach = function(bufnr)
-                -- Jump forwards/backwards with '{' and '}'
+                -- These mappings are local and MUST remain here
                 vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
                 vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
             end,
@@ -19,8 +21,5 @@ return {
                 min_width = 30,
             },
         })
-        -- You probably also want to set a keymap to toggle aerial
-        vim.keymap.set("n", "<leader>o", "<cmd>AerialToggle!<CR>")
-        vim.keymap.set("n", "<leader>on", "<cmd>AerialNavToggle<CR>")
     end,
 }

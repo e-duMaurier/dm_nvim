@@ -1,64 +1,37 @@
--- Default colur theme file for Nvim.
--- Currently used to provide the catppuccin colour theme.
-return {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false, -- disable Lazy loading
-    priority = 1000,
-    config = function()
-        require("catppuccin").setup({
-            flavour = "mocha", -- Set Mocha style
-            transparent_background = true,
-            styles = {
-                comments = {}, -- disable italics on comments
-            },
-            integrations = {
-                neotree = true,
-                telescope = {
-                    enabled = true,
-                },
-                markdown = true,
-                mason = true,
-                cmp = true,
-                treesitter = true,
-                treesitter_context = true,
-                native_lsp = {
-                    enabled = true,
-                    virtual_text = {
-                        errors = { "italic" },
-                        hints = { "italic" },
-                        warnings = { "italic" },
-                        information = { "italic" },
-                        ok = { "italic" },
-                    },
-                    underlines = {
-                        errors = { "underline" },
-                        hints = { "underline" },
-                        warnings = { "underline" },
-                        information = { "underline" },
-                        ok = { "underline" },
-                    },
-                    inlay_hints = {
-                        background = true,
-                    },
-                },
-                gitsigns = {
-                    enabled = true,
-                    transparent = false, -- align with the transparent background by default
-                },
-                alpha = true,
-                indent_blankline = {
-                    enabled = true,
-                    scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
-                    colored_indent_levels = true,
-                },
-                aerial = true,
-                dap = true,
-                which_key = true,
-            },
-        })
+-- lua/config/colortheme.lua
+-- Responsible for selecting and dynamically loading the active color theme from the 'config/themes/' directory.
+-- It returns the Lazy.nvim plugin specification for the chosen theme.
 
-        -- Apply the colorscheme
-        vim.cmd.colorscheme("catppuccin")
-    end,
-}
+-- Set the name of the active theme here.
+-- Change this value to easily switch between themes defined in sub-files.
+local active_theme_name = "catppuccin" -- Example: "catppuccin", "onedark", etc.
+
+-- Define the base module path for themes.
+-- This assumes themes are located under ~/.config/nvim/lua/config/themes/
+local theme_base_module = "config.themes."
+
+-- Construct the full Lua module path for the active theme
+local theme_module_path = theme_base_module .. active_theme_name
+
+-- Attempt to load the theme's plugin specification.
+-- pcall ensures that errors during require (e.g., file not found, syntax error) are caught.
+local status, theme_plugin_spec = pcall(require, theme_module_path)
+
+if status and type(theme_plugin_spec) == "table" then
+    return theme_plugin_spec
+else
+    -- Handle cases where the theme module could not be found or had an error during require.
+    vim.notify(
+        "Error: Could not load color theme '"
+        .. active_theme_name
+        .. "' from module '"
+        .. theme_module_path
+        .. "'. "
+        .. (tostring(theme_plugin_spec) or "No error message."),
+        vim.log.levels.ERROR
+    )
+    -- Fallback to Neovim's default colorscheme if the specified theme can't be loaded.
+    vim.cmd.colorscheme("default")
+    -- Return an empty table so Lazy.nvim doesn't try to load a non-existent plugin or error out further.
+    return {}
+end

@@ -1,26 +1,27 @@
+-- init.lua
+
+vim.loader.enable()
+
+-- Load the core Lazy.nvim setup, which will then load all other plugins including themes.
+require("core.lazy")
+
+-- Your other config files that contain mappings or autocmds (not plugin definitions)
 require("config.mappings")
 require("config.autocmd")
 
-require("core.lazy")
-
--- Require the options table early, but its contents will be applied later
+-- Require the options table, and defer setting ALL global options
 local global_options_table = require("config.options")
 
--- Defer setting ALL global options until after a buffer is displayed in a window
--- This prevents conflicts with nomodifiable buffers created during startup
 vim.api.nvim_create_autocmd("BufWinEnter", {
-    pattern = "*",
-    callback = function()
-        -- Iterate through the loaded global options table and set them
-        for option_name, option_value in pairs(global_options_table) do
-            -- Special handling for runtimepath if it was included in the table
-            if option_name == "runtimepath" then
-                -- Handle runtimepath modification if needed, e.g.:
-                -- vim.opt.runtimepath:remove(option_value)
-            else
-                vim.o[option_name] = option_value
-            end
-        end
-    end,
-    once = true, -- Ensure it runs only once
+	pattern = "*",
+	callback = function()
+		for option_name, option_value in pairs(global_options_table) do
+			if option_name == "runtimepath" then
+				-- Handle runtimepath modification if needed
+			else
+				vim.o[option_name] = option_value
+			end
+		end
+	end,
+	once = true,
 })

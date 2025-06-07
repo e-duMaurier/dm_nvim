@@ -1,4 +1,5 @@
--- lazy.nvim plugin manager
+-- lua/core/lazy.lua
+-- Configures Lazy.nvim and loads all plugins, including the active color theme.
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -10,9 +11,19 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
-    require("core.neotree"),
-    require("config.colortheme"),
+-- Load the central colortheme configuration.
+-- This file is expected to return the Lazy.nvim plugin specification for the active theme.
+local theme_plugin_spec = require("config.colortheme")
+
+-- Each required file should return a plugin specification table as expected by Lazy.nvim.
+local plugins = {
+    -- The selected color theme plugin is included here and stay near the top.
+    theme_plugin_spec,
+
+    -- Core plugins (e.g., neotree)
+    require("core.neotree"), -- Returns the neo-tree plugin spec
+
+    -- Other plugins
     require("plugins.bufferline"),
     require("plugins.lualine"),
     require("plugins.treesitter"),
@@ -30,4 +41,6 @@ require("lazy").setup({
     require("plugins.fterm"), -- floating terminal
     require("plugins.dap"), -- debug adapter protocol
     require("plugins.aerial"),
-})
+}
+
+require("lazy").setup(plugins, {})

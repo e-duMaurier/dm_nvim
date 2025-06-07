@@ -2,6 +2,17 @@
 
 This repository contains my custom Neovim configuration, including settings, mappings, and plugins that shape my workflow.
 
+This was built up while following some guides, YouTube videos, and base configurations, to work through what I would like, and making adjustments that suit me. I am working through this as I go, making changes to the configuration, and plugins, as I go, depending on what I feel works for me.
+
+Some of the content and resources used for this are:
+
+- [BreadOnPenguins](https://www.youtube.com/watch?v=zkOEdhfwXok) - A guide to NEOVIM configuration from scratch: structure, plugins, and more
+- [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) - A starting point for Neovim
+- [Henry Misc](https://www.youtube.com/watch?v=KYDG3AHgYEs&t) - Full Neovim Setup from Scratch in 2025
+- [Seth Phaeno](https://www.youtube.com/watch?v=FGVY7gbaoQI&t) - The Ultimate Neovim Setup Guide From scratch
+- [Chris@Machine](https://www.youtube.com/playlist?list=PLhoH5vyxr6Qq41NFL4GvhFp-WLd5xzIzZ) - Neovim from Scratch
+- [TJ DeVries](https://www.youtube.com/watch?v=m8C0Cq9Uv9o) - The Only Video You Need to Get Started with Neovim
+
 ## Requirements
 
 The complete configuration, including plugins, has several requirements, so it is advised to check these, and install, or disable any plugins, before attempting to use this configuration.

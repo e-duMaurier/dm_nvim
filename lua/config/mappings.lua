@@ -1,3 +1,6 @@
+-- lua/config/mappings.lua
+-- This file centralizes all customized key mappings for Neovim and its plugins, including global actions and plugin-specific commands.
+
 ----------------------------------------------------------------------------------------------------
 --                                      GLOBAL SETTINGS & VARIABLES
 ----------------------------------------------------------------------------------------------------
@@ -17,7 +20,7 @@ local opts = { noremap = true, silent = true }
 -- Function to create keymaos with a description, while keeping 'opts' are applied
 -- 'modes' can be a string, or table ("n", or {"n","v"}).
 local function map_with_desc(modes, map, cmd, description)
-    vim.keymap.set(modes, map, cmd, vim.tbl_extend("force", opts, { desc = description }))
+	vim.keymap.set(modes, map, cmd, vim.tbl_extend("force", opts, { desc = description }))
 end
 
 -- Variable to track diagnostics state (used for toggling)
@@ -136,12 +139,12 @@ map_with_desc("n", "<leader>d", "<Nop>", "Diagnostics")
 -- Toggle All Diagnostics
 -- Toggles all LSP diagnostics (errors, warnings, info) on or off for the current buffer.
 map_with_desc("n", "<leader>do", function()
-    diagnostics_active = not diagnostics_active
-    if diagnostics_active then
-        vim.diagnostic.enable(0)
-    else
-        vim.diagnostic.disable(0)
-    end
+	diagnostics_active = not diagnostics_active
+	if diagnostics_active then
+		vim.diagnostic.enable(0)
+	else
+		vim.diagnostic.disable(0)
+	end
 end, "Toggle Diagnostics")
 
 -- Diagnostic Navigation
@@ -163,16 +166,16 @@ vim.keymap.set("n", "<leader>dl", vim.diagnostic.setloclist, { desc = "Open diag
 map_with_desc("n", "<leader>e", ":Neotree toggle<CR>", "Toggle Neotree")
 -- Open NeoTree in a floating window to show Git status.
 vim.keymap.set(
-    "n",
-    "<leader>ngs",
-    ":Neotree float git_status<CR>",
-    { silent = true, desc = "Neotree Open Git Status Window" }
+	"n",
+	"<leader>ngs",
+	":Neotree float git_status<CR>",
+	{ silent = true, desc = "Neotree Open Git Status Window" }
 )
 
 -- Fterm (Floating Terminal)
 -- Toggle the floating terminal
 map_with_desc({ "n", "t" }, "<leader>tt", function()
-    require("FTerm").toggle()
+	require("FTerm").toggle()
 end, "Toggle Floating Terminal")
 
 -- Aerial (Code Outline and Synbols)

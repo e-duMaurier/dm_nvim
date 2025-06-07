@@ -52,7 +52,9 @@ return {
                     scope_color = "", -- catppuccin color (eg. `lavender`) Default: text
                     colored_indent_levels = true,
                 },
-                window_picker = true,
+                aerial = true,
+                dap = true,
+                which_key = true,
             },
         })
 

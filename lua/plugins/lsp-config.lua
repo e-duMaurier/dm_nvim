@@ -118,7 +118,7 @@ return { -- LSP Configuration & Plugins
             gopls = {},
             gradle_ls = {},
             graphql = {},
-            groovyls = {},
+            --        groovyls = {},
             html = { filetypes = { "html", "twig", "hbs" } },
             -- java_language_server = {}, -- need to fix/setup
             jdtls = {},

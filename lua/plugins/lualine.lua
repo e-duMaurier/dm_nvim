@@ -35,7 +35,7 @@ return {
 
         local diff = {
             "diff",
-            colored = false,
+            colored = true, -- was false
             symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
             cond = hide_in_width,
         }

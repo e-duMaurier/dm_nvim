@@ -2,276 +2,267 @@
 -- Configures Neovim's built-in LSP client (nvim-lspconfig) and integrates with Mason for LSP server management.
 
 return {
-	"neovim/nvim-lspconfig",
-	dependencies = {
-		"williamboman/mason.nvim",
-		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
 
-		-- Useful status updates for LSP.
-		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{
-			"j-hui/fidget.nvim",
-			tag = "v1.4.0",
-			opts = {
-				progress = {
-					display = {
-						done_icon = "✓", -- Icon shown when all LSP progress tasks are complete
-					},
-				},
-				notification = {
-					window = {
-						winblend = 0, -- Background color opacity in the notification window
-					},
-				},
-			},
-			{
-				"folke/neodev.nvim",
-				-- Explicitly configure neodev to set up LuaLS with Neovim types
-				config = function()
-					require("neodev").setup({
-						library = {
-							-- Point neodev to generate types for the 'lua_ls' language server
-							lsp = { "lua_ls" },
-							-- Also include general Neovim types
-							types = true,
-						},
-					})
-				end,
-			},
-		},
-	},
-	config = function()
-		-- CONFIGURE LSP DIAGNOSTICS DISPLAY
-		vim.diagnostic.config({
-			-- Options for inline display (virtual text)
-			virtual_text = {
-				enabled = true, -- Enable showing diagnostic messages directly in the line of code
-				spacing = 4, -- Space between the end of the line and the virtual text message
-				severity = {
-					min = vim.diagnostic.severity.INFO, -- Only show INFO and higher as virtual text
-				},
-			},
-			-- Options for how diagnostics are displayed in the sign column (left gutter)
-			signs = {
-				enabled = true, -- Enable showing icons in the sign column
-				text = {
-					[vim.diagnostic.severity.ERROR] = "✖",
-					[vim.diagnostic.severity.WARN] = "!",
-					[vim.diagnostic.severity.INFO] = "i",
-					[vim.diagnostic.severity.HINT] = "?",
-				},
-			},
-			-- General display settings
-			update_in_insert = false, -- Don't update diagnostics in Insert mode (can be distracting)
-			severity_sort = true, -- Sort diagnostics by severity (errors, then warnings, etc.)
-			float = {
-				-- Options for the floating window (e.g., when hovering with K or calling leader df)
-				border = "rounded", -- Use rounded borders for the float
-				source = "always", -- Always show the source of the diagnostic
-				-- header = "",      -- You can add a custom header to the float
-			},
-		})
+        -- Useful status updates for LSP.
+        -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+        {
+            "j-hui/fidget.nvim",
+            tag = "v1.4.0",
+            opts = {
+                progress = {
+                    display = {
+                        done_icon = "✓", -- Icon shown when all LSP progress tasks are complete
+                    },
+                },
+                notification = {
+                    window = {
+                        winblend = 0, -- Background color opacity in the notification window
+                    },
+                },
+            },
+        },
+        {
+            "folke/lazydev.nvim",
+            ft = "lua",
+            opts = {},
+        },
+    },
+    config = function()
+        -- CONFIGURE LSP DIAGNOSTICS DISPLAY
+        vim.diagnostic.config({
+            -- Options for inline display (virtual text)
+            virtual_text = {
+                enabled = true,          -- Enable showing diagnostic messages directly in the line of code
+                spacing = 4,             -- Space between the end of the line and the virtual text message
+                severity = {
+                    min = vim.diagnostic.severity.INFO, -- Only show INFO and higher as virtual text
+                },
+            },
+            -- Options for how diagnostics are displayed in the sign column (left gutter)
+            signs = {
+                enabled = true, -- Enable showing icons in the sign column
+                text = {
+                    [vim.diagnostic.severity.ERROR] = "✖",
+                    [vim.diagnostic.severity.WARN] = "!",
+                    [vim.diagnostic.severity.INFO] = "i",
+                    [vim.diagnostic.severity.HINT] = "?",
+                },
+            },
+            -- General display settings
+            update_in_insert = false, -- Don't update diagnostics in Insert mode (can be distracting)
+            severity_sort = true, -- Sort diagnostics by severity (errors, then warnings, etc.)
+            float = {
+                -- Options for the floating window (e.g., when hovering with K or calling leader df)
+                border = "rounded", -- Use rounded borders for the float
+                source = "always", -- Always show the source of the diagnostic
+                -- header = "",      -- You can add a custom header to the float
+            },
+        })
 
-		vim.api.nvim_create_autocmd("LspAttach", {
-			group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-			-- A function that sets the mode, buffer and description for us each time.
-			callback = function(event)
-				local map = function(keys, func, desc)
-					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-				end
+        vim.api.nvim_create_autocmd("LspAttach", {
+            group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+            -- A function that sets the mode, buffer and description for us each time.
+            callback = function(event)
+                local map = function(keys, func, desc)
+                    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+                end
 
-				-- Jump to the definition of the word under the cursor.
-				-- This is where a variable was first declared, or where a function is defined, etc.
-				-- To jump back, press <C-T>.
-				map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+                -- Jump to the definition of the word under the cursor.
+                -- This is where a variable was first declared, or where a function is defined, etc.
+                -- To jump back, press <C-T>.
+                map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
 
-				-- Find references for the word under the cursor.
-				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+                -- Find references for the word under the cursor.
+                map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
-				-- Jump to the implementation of the word under the cursor.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+                -- Jump to the implementation of the word under the cursor.
+                map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
 
-				-- Jump to the type of the word under the cursor.
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+                -- Jump to the type of the word under the cursor.
+                map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
 
-				-- Fuzzy find all the symbols in the current document.
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+                -- Fuzzy find all the symbols in the current document.
+                map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
 
-				-- Fuzzy find all the symbols in the current workspace
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+                -- Fuzzy find all the symbols in the current workspace
+                map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
-				-- Rename the variable under the cursor
-				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+                -- Rename the variable under the cursor
+                map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
-				-- Execute a code action, usually the cursor needs to be on top of an error
-				-- or a suggestion from your LSP for this to activate.
-				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+                -- Execute a code action, usually the cursor needs to be on top of an error
+                -- or a suggestion from your LSP for this to activate.
+                map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
 
-				-- Opens a popup that displays documentation about the word under the cursor
-				-- See `:help K` for why this keymap
-				map("K", vim.lsp.buf.hover, "Hover Documentation")
+                -- Opens a popup that displays documentation about the word under the cursor
+                -- See `:help K` for why this keymap
+                map("K", vim.lsp.buf.hover, "Hover Documentation")
 
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				-- For example, in C this would take you to the header
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+                -- WARN: This is not Goto Definition, this is Goto Declaration.
+                -- For example, in C this would take you to the header
+                map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-				map("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
-				map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
-				map("<leader>wl", function()
-					print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-				end, "[W]orkspace [L]ist Folders")
+                map("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
+                map("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+                map("<leader>wl", function()
+                    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+                end, "[W]orkspace [L]ist Folders")
 
-				-- The following two autocommands are used to highlight references of the
-				-- word under the cursor when the cursor rests there.
-				-- See `:help CursorHold` for information about when this is executed
-				--
-				-- When the cursor is moved, the highlights will be cleared (the second autocommand).
-				local client = vim.lsp.get_client_by_id(event.data.client_id)
-				if client and client.server_capabilities.documentHighlightProvider then
-					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-						buffer = event.buf,
-						callback = vim.lsp.buf.document_highlight,
-					})
+                -- The following two autocommands are used to highlight references of the
+                -- word under the cursor when the cursor rests there.
+                -- See `:help CursorHold` for information about when this is executed
+                --
+                -- When the cursor is moved, the highlights will be cleared (the second autocommand).
+                local client = vim.lsp.get_client_by_id(event.data.client_id)
+                if client and client.server_capabilities.documentHighlightProvider then
+                    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.document_highlight,
+                    })
 
-					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-						buffer = event.buf,
-						callback = vim.lsp.buf.clear_references,
-					})
-				end
-			end,
-		})
+                    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                        buffer = event.buf,
+                        callback = vim.lsp.buf.clear_references,
+                    })
+                end
+            end,
+        })
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", {}, capabilities, require("cmp_nvim_lsp").default_capabilities())
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = vim.tbl_deep_extend("force", {}, capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-		-- Enable the following language servers
-		local servers = {
-			arduino_language_server = {},
-			ansiblels = {},
-			awk_ls = {},
-			azure_pipelines_ls = {},
-			bashls = {},
-			cmake = {},
-			-- csharp_ls = {}, - need to fix/setup
-			css_variables = {},
-			cssls = {},
-			cssmodules_ls = {},
-			docker_compose_language_service = {},
-			dockerls = {},
-			eslint = {},
-			golangci_lint_ls = {},
-			gopls = {},
-			gradle_ls = {},
-			graphql = {},
-			--        groovyls = {},
-			html = { filetypes = { "html", "twig", "hbs" } },
-			-- java_language_server = {}, -- need to fix/setup
-			jdtls = {},
-			jsonls = {},
-			kotlin_language_server = {},
-			-- laravel_ls = {}, -- need to fix/setup
-			ltex = {},
-			lua_ls = {
-				settings = {
-					Lua = {
-						runtime = { version = "LuaJIT" },
-						workspace = {
-							checkThirdParty = false,
-							-- Tells lua_ls where to find all the Lua files that are loaded in the neovim configuration.
-							library = {
-								"${3rd}/luv/library",
-								vim.env.VIMRUNTIME,
-								-- ".",
-							},
-						},
-						completion = {
-							callSnippet = "Replace",
-						},
-						telemetry = { enable = false },
-						diagnostics = {
-							-- Get the language server to recognize the `vim` global
-							globals = { "vim", "require" },
-						},
-					},
-				},
-			},
-			nextls = {},
-			postgres_lsp = {},
-			powershell_es = {},
-			pylsp = {
-				settings = {
-					pylsp = {
-						plugins = {
-							pyflakes = { enabled = false },
-							pycodestyle = { enabled = false },
-							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							mccabe = { enabled = false },
-							pylsp_mypy = { enabled = false },
-							pylsp_black = { enabled = false },
-							pylsp_isort = { enabled = false },
-						},
-					},
-				},
-			},
-			ruff = {
-				-- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
-				-- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
-				commands = {
-					RuffAutofix = {
-						function()
-							vim.lsp.buf.execute_command({
-								command = "ruff.applyAutofix",
-								arguments = {
-									{ uri = vim.uri_from_bufnr(0) },
-								},
-							})
-						end,
-						description = "Ruff: Fix all auto-fixable problems",
-					},
-					RuffOrganizeImports = {
-						function()
-							vim.lsp.buf.execute_command({
-								command = "ruff.applyOrganizeImports",
-								arguments = {
-									{ uri = vim.uri_from_bufnr(0) },
-								},
-							})
-						end,
-						description = "Ruff: Format imports",
-					},
-				},
-			},
-			sqlls = {},
-			svelte = {},
-			tailwindcss = {},
-			-- terraform_lsp = {}, - need to fix/setup
-			terraformls = {},
-			texlab = {},
-			yamlls = {},
-		}
+        -- Enable the following language servers
+        local servers = {
+            arduino_language_server = {},
+            ansiblels = {},
+            awk_ls = {},
+            azure_pipelines_ls = {},
+            bashls = {},
+            cmake = {},
+            -- csharp_ls = {}, - need to fix/setup
+            css_variables = {},
+            cssls = {},
+            cssmodules_ls = {},
+            docker_compose_language_service = {},
+            dockerls = {},
+            eslint = {},
+            golangci_lint_ls = {},
+            gopls = {},
+            gradle_ls = {},
+            graphql = {},
+            --        groovyls = {},
+            html = { filetypes = { "html", "twig", "hbs" } },
+            -- java_language_server = {}, -- need to fix/setup
+            jdtls = {},
+            jsonls = {},
+            kotlin_language_server = {},
+            -- laravel_ls = {}, -- need to fix/setup
+            ltex = {},
+            lua_ls = {
+                settings = {
+                    Lua = {
+                        runtime = { version = "LuaJIT" },
+                        workspace = {
+                            checkThirdParty = false,
+                            -- Tells lua_ls where to find all the Lua files that are loaded in the neovim configuration.
+                            library = {
+                                "${3rd}/luv/library",
+                                vim.env.VIMRUNTIME,
+                                -- ".",
+                            },
+                        },
+                        completion = {
+                            callSnippet = "Replace",
+                        },
+                        telemetry = { enable = false },
+                        diagnostics = {
+                            -- Get the language server to recognize the `vim` global
+                            globals = { "vim", "require" },
+                        },
+                    },
+                },
+            },
+            nextls = {},
+            postgres_lsp = {},
+            powershell_es = {},
+            pylsp = {
+                settings = {
+                    pylsp = {
+                        plugins = {
+                            pyflakes = { enabled = false },
+                            pycodestyle = { enabled = false },
+                            autopep8 = { enabled = false },
+                            yapf = { enabled = false },
+                            mccabe = { enabled = false },
+                            pylsp_mypy = { enabled = false },
+                            pylsp_black = { enabled = false },
+                            pylsp_isort = { enabled = false },
+                        },
+                    },
+                },
+            },
+            ruff = {
+                -- Notes on code actions: https://github.com/astral-sh/ruff-lsp/issues/119#issuecomment-1595628355
+                -- Get isort like behavior: https://github.com/astral-sh/ruff/issues/8926#issuecomment-1834048218
+                commands = {
+                    RuffAutofix = {
+                        function()
+                            vim.lsp.buf.execute_command({
+                                command = "ruff.applyAutofix",
+                                arguments = {
+                                    { uri = vim.uri_from_bufnr(0) },
+                                },
+                            })
+                        end,
+                        description = "Ruff: Fix all auto-fixable problems",
+                    },
+                    RuffOrganizeImports = {
+                        function()
+                            vim.lsp.buf.execute_command({
+                                command = "ruff.applyOrganizeImports",
+                                arguments = {
+                                    { uri = vim.uri_from_bufnr(0) },
+                                },
+                            })
+                        end,
+                        description = "Ruff: Format imports",
+                    },
+                },
+            },
+            sqlls = {},
+            svelte = {},
+            tailwindcss = {},
+            -- terraform_lsp = {}, - need to fix/setup
+            terraformls = {},
+            texlab = {},
+            yamlls = {},
+        }
 
-		-- Ensure the servers and tools above are installed
-		require("mason").setup()
+        -- Ensure the servers and tools above are installed
+        require("mason").setup()
 
-		local ensure_installed = vim.tbl_keys(servers or {})
-		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format lua code
-		})
-		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+        local ensure_installed = vim.tbl_keys(servers or {})
+        vim.list_extend(ensure_installed, {
+            "stylua", -- Used to format lua code
+        })
+        require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		require("mason-lspconfig").setup({
-			handlers = {
-				function(server_name)
-					local server = servers[server_name] or {}
-					-- This handles overriding only values explicitly passed
-					-- by the server configuration above. Useful when disab:ling
-					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-					require("lspconfig")[server_name].setup(server)
-				end,
-			},
-		})
-	end,
+        require("mason-lspconfig").setup({
+            handlers = {
+                function(server_name)
+                    local server = servers[server_name] or {}
+                    -- This handles overriding only values explicitly passed
+                    -- by the server configuration above. Useful when disab:ling
+                    -- certain features of an LSP (for example, turning off formatting for tsserver)
+                    server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+                    require("lspconfig")[server_name].setup(server)
+                end,
+            },
+        })
+    end,
 }

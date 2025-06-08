@@ -24,9 +24,10 @@ return {
         })
 
         local sources = {
-            diagnostics.checkmake,
             diagnostics.ansiblelint,
+            diagnostics.checkmake,
             diagnostics.cppcheck,
+            --formatting.codespell,
             formatting.csharpier,
             formatting.gofmt,
             -- formatting.google_java_format,  -- need to fix/set up
@@ -34,6 +35,8 @@ return {
             formatting.stylua,
             formatting.shfmt.with({ args = { "-i", "4" } }),
             formatting.terraform_fmt,
+            formatting.yamlfix,
+            formatting.yamlfmt,
             require("none-ls.formatting.ruff").with({ extra_args = { "--extend-select", "I" } }),
             require("none-ls.formatting.ruff_format"),
         }
